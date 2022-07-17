@@ -53,6 +53,8 @@ contract FractionableNFT is ERC721, Ownable {
     }
 
     function checkOwnership(address from, address to, uint256 amount, uint256 _tokenId) external {
+        require(msg.sender ==  _NFT_Infos[_tokenId].fractions, "Only Fractions Contract could enter");
+        
         uint256 balanceOfFrom = _NFT_Infos[_tokenId].fractions.balanceOf(from);
         uint256 balanceOfTo = _NFT_Infos[_tokenId].fractions.balanceOf(to);
 
